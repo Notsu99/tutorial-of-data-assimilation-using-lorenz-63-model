@@ -11,7 +11,7 @@
 ## Setup for Docker
 
 1. Install docker and confirm that `docker compose` command works
-2. Modify [docker-compose.yml](./docker-compose.yml) (change port number in pytorch_es to the number assigned to you)
+2. Modify [docker-compose.yml](./docker-compose.yml)
 3. Build a container: `$ docker compose build`
 4. Start a contaner:
     1. CPU environment: `$ docker compose up -d pytorch_cpu`

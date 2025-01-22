@@ -34,7 +34,7 @@ services:
         - HTTPS_PROXY
     tty: true
     ports:
-      - "0000:8888"  # your port : container's port. Please change your port number to the number assigned to you
+      - "0000:8888"  # your port : container's port. Please change your port number as you want
     environment:
       - http_proxy
       - https_proxy
