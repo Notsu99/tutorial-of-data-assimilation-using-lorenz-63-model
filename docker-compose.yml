@@ -1,0 +1,56 @@
+version: "3"
+services:
+  pytorch_cpu:
+    build:
+      context: ./docker/pytorch_cpu
+      args:
+        - http_proxy
+        - https_proxy
+        - HTTP_PROXY
+        - HTTPS_PROXY
+    tty: true
+    ports:
+      - "8888:8888"  # your port : container's port. Please change your port number as you want
+    environment:
+      - PYTHONPATH=/workspace/python
+      - http_proxy
+      - https_proxy
+      - HTTP_PROXY
+      - HTTPS_PROXY
+    volumes:
+      - ./data:/workspace/data:cached
+      - ./python:/workspace/python:cached
+      - ./docs:/workspace/docs:cached
+      - ./reports:/workspace/reports:cached
+    command: poetry run jupyter lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token=''
+  pytorch_gpu:
+    shm_size: "10gb"
+    build:
+      context: ./docker/pytorch_gpu
+      args:
+        - http_proxy
+        - https_proxy
+        - HTTP_PROXY
+        - HTTPS_PROXY
+    tty: true
+    ports:
+      - "0000:8888"  # your port : container's port. Please change your port number to the number assigned to you
+    environment:
+      - http_proxy
+      - https_proxy
+      - HTTP_PROXY
+      - HTTPS_PROXY
+      - PYTHONPATH=/workspace/python
+    volumes:
+      - ./data:/workspace/data:cached
+      - ./python:/workspace/python:cached
+      - ./docs:/workspace/docs:cached
+      - ./reports:/workspace/reports:cached
+    command: jupyter lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token=''
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: [ '0' ]
+              capabilities: [ gpu ]

@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+scipy = "*"
+scikit-learn = "*"
+pandas = "*"
+tqdm = "*"
+mlflow = "*"
+hydra-core = "*"
+xarray = "*"
+torch = {file = "https://download.pytorch.org/whl/cu113/torch-1.12.1%2Bcu113-cp39-cp39-linux_x86_64.whl"}
+pyyaml = "*"
+
+[dev-packages]
+black = "*"
+flake8 = "*"
+isort = "*"
+ipykernel = "*"
+matplotlib = "*"
+jupyterlab = "*"
+python-lsp-server = "*"
+jupyter-lsp = "*"
+jupyterlab-lsp = "*"
+ipython = "*"
+jupyterlab-code-formatter = "*"
+ipywidgets = "*"
+seaborn = "*"
+plotly = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.9"
